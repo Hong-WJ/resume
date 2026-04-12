@@ -12,11 +12,13 @@
     :root {
       --pku-red: #8C1515;
       --pku-dark: #1a1a2e;
+      --whu-blue: #002554;
+      --whu-green: #115740;
       --accent: #8C1515;
       --accent-light: #f8eded;
-      --accent2: #1a56db;
+      --accent2: #002554;
       --accent2-light: #eef2ff;
-      --accent3: #0d7c45;
+      --accent3: #115740;
       --accent3-light: #ecfdf5;
       --text-primary: #1a1a1a;
       --text-secondary: #4b5563;
@@ -239,8 +241,8 @@
 
     .hero-contacts {
       display: flex;
-      flex-direction: column;
-      gap: 0.55rem;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.8rem;
     }
 
     .contact-item {
@@ -424,11 +426,11 @@
       margin-right: 0.4rem;
     }
 
-    .badge-nsfc  { background: #fef3c7; color: #92400e; }
-    .badge-lab   { background: #ecfdf5; color: #065f46; }
-    .badge-lead  { background: #eef2ff; color: #3730a3; }
+    .badge-nsfc  { background: #ecfdf5; color: #065f46; }
+    .badge-lab   { background: #fef3c7; color: #92400e; }
+    .badge-lead  { background: #fff7ed; color: #9a3412; }
     .badge-solo  { background: #fdf4ff; color: #7e22ce; }
-    .badge-pm    { background: #fff7ed; color: #9a3412; }
+    .badge-pm    { background: #eef2ff; color: #3730a3; }
 
     /* ── EDUCATION ── */
     .edu-gpa {
@@ -583,9 +585,9 @@
       height: 3px;
     }
 
-    .skill-card.math::after  { background: linear-gradient(90deg, #8C1515, #c0392b); }
-    .skill-card.code::after  { background: linear-gradient(90deg, #1a56db, #3b82f6); }
-    .skill-card.lang::after  { background: linear-gradient(90deg, #0d7c45, #34d399); }
+    .skill-card.math::after  { background: linear-gradient(90deg, var(--accent), #c0392b); }
+    .skill-card.code::after  { background: linear-gradient(90deg, var(--accent2), #3b82f6); }
+    .skill-card.lang::after  { background: linear-gradient(90deg, var(--accent3), #34d399); }
 
     .skill-card:hover {
       box-shadow: var(--shadow-hover);
@@ -760,7 +762,7 @@
       <h2 class="section-title">教育经历</h2>
     </div>
 
-    <div class="card fade-in">
+    <div class="card green fade-in">
       <div class="card-header">
         <div>
           <div class="card-title">
@@ -777,7 +779,7 @@
       </ul>
     </div>
 
-    <div class="card blue fade-in">
+    <div class="card fade-in">
       <div class="card-header">
         <div>
           <div class="card-title">北京大学</div>
@@ -786,8 +788,8 @@
         <span class="card-date">2024.09 – 至今（预计 2029.07）</span>
       </div>
       <div style="margin-top:0.6rem">
-        <span class="tag tag-blue">大语言模型安全与隐私</span>
-        <span class="tag tag-blue">人工智能鲁棒性与不确定度</span>
+        <span class="tag tag-red">大语言模型安全与隐私</span>
+        <span class="tag tag-red">人工智能鲁棒性与不确定度</span>
       </div>
     </div>
   </section>
@@ -799,7 +801,7 @@
       <h2 class="section-title">项目</h2>
     </div>
 
-    <div class="card fade-in">
+    <div class="card green fade-in">
       <div class="card-header">
         <div>
           <div class="card-title">基于统计的类型推理方法研究</div>
@@ -811,11 +813,11 @@
       </div>
       <ul>
         <li>国家自然科学基金面上项目（No.61872272）</li>
-        <li>对于无法通过编译器编译的代码片段，利用机器学习方法对其进行类型推理，主要负责从序列恢复出类型的部分。</li>
+        <li>对于无法通过编译的代码片段，利用机器学习方法对其进行类型推理，主要负责从序列恢复出类型的部分。</li>
       </ul>
     </div>
 
-    <div class="card fade-in">
+    <div class="card green fade-in">
       <div class="card-header">
         <div>
           <div class="card-title">模糊程序语法分析方法研究</div>
@@ -831,7 +833,7 @@
       </ul>
     </div>
 
-    <div class="card gold fade-in">
+    <div class="card blue fade-in">
       <div class="card-header">
         <div>
           <div class="card-title">面向课程评估、推荐与讨论的 AI 增强平台</div>
@@ -846,7 +848,7 @@
       </ul>
     </div>
 
-    <div class="card green fade-in">
+    <div class="card gold fade-in">
       <div class="card-header">
         <div>
           <div class="card-title">通过形式化全验证的 OpenHarmony LiteOS-M</div>
@@ -861,7 +863,7 @@
       </ul>
     </div>
 
-    <div class="card blue fade-in">
+    <div class="card fade-in">
       <div class="card-header">
         <div>
           <div class="card-title">人工智能数据模型误差来源分析及量化研究</div>
@@ -884,7 +886,7 @@
       <h2 class="section-title">课程教学</h2>
     </div>
 
-    <div class="card fade-in">
+    <div class="card green fade-in">
       <div class="card-header">
         <div>
           <div class="card-title">编译原理，助教</div>
@@ -900,7 +902,7 @@
       </ul>
     </div>
 
-    <div class="card blue fade-in">
+    <div class="card fade-in">
       <div class="card-header">
         <div>
           <div class="card-title">数理逻辑，助教</div>
@@ -1029,7 +1031,7 @@
 
 <!-- ── FOOTER ── -->
 <footer>
-  <p>洪巍骏 · 北京大学计算机学院 · <a href="mailto:hongwj@hongwj.com">hongwj@hongwj.com</a> · <a href="https://blog.hongwj.com" target="_blank" rel="noopener">blog.hongwj.com</a></p>
+  <p>洪巍骏 · 北京大学计算机学院 · <a href="mailto:hongwj@hongwj.com">hongwj@hongwj.com</a></p>
 </footer>
 
 <script>
