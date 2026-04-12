@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>洪巍骏</title>
+  <link rel="icon" type="image/png" href="favicon.PNG" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pku-red: #8C1515;
+      --pku-dark: #1a1a2e;
+      --pku-blue: #003087;
+      --accent: #8C1515;
+      --accent-light: #f5e8e8;
+      --text-primary: #1a1a1a;
+      --text-secondary: #555;
+      --text-muted: #888;
+      --border: #e0e0e0;
+      --bg: #fafafa;
+      --card-bg: #ffffff;
+      --shadow: 0 2px 12px rgba(0,0,0,0.07);
+      --shadow-hover: 0 6px 24px rgba(0,0,0,0.13);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Noto Sans SC', 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* ── TOP NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+
+    .nav-name {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--pku-red);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    .btn-blog {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.38rem 1rem;
+      background: var(--pku-red);
+      color: #fff !important;
+      border-radius: 20px;
+      font-size: 0.85rem !important;
+      font-weight: 600 !important;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s !important;
+      box-shadow: 0 2px 8px rgba(140,21,21,0.25);
+    }
+
+    .btn-blog:hover {
+      background: #6b1010 !important;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(140,21,21,0.35) !important;
+      color: #fff !important;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: #fff;
+      padding: 4rem 2rem 3.5rem;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      gap: 2.5rem;
+      align-items: flex-start;
+    }
+
+    .hero-photo {
+      width: 120px;
+      height: 150px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 3px solid rgba(255,255,255,0.2);
+      flex-shrink: 0;
+    }
+
+    .hero-photo-placeholder {
+      width: 120px;
+      height: 150px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.1);
+      border: 2px dashed rgba(255,255,255,0.3);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+    }
+
+    .hero-content {
+      flex: 1;
+    }
+
+    .hero-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.3rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 1.4rem;
+      font-weight: 300;
+      letter-spacing: 0.1em;
+    }
+
+    .hero-contacts {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem 1.8rem;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-size: 0.87rem;
+      color: rgba(255,255,255,0.82);
+    }
+
+    .contact-item a {
+      color: rgba(255,255,255,0.82);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-item a:hover {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    .contact-icon {
+      width: 16px;
+      height: 16px;
+      opacity: 0.75;
+      flex-shrink: 0;
+    }
+
+    .hero-blog-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 1.6rem;
+      padding: 0.55rem 1.5rem;
+      background: linear-gradient(135deg, #8C1515, #c0392b);
+      color: #fff;
+      border-radius: 24px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(140,21,21,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      letter-spacing: 0.03em;
+    }
+
+    .hero-blog-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(140,21,21,0.5);
+    }
+
+    /* ── MAIN LAYOUT ── */
+    main {
+      max-width: 900px;
+      margin: 2.5rem auto;
+      padding: 0 1.5rem;
+    }
+
+    /* ── SECTION ── */
+    .section {
+      margin-bottom: 2.8rem;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.4rem;
+      padding-bottom: 0.6rem;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .section-icon {
+      width: 22px;
+      height: 22px;
+      color: var(--accent);
+    }
+
+    .section-title {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--pku-dark);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── CARDS ── */
+    .card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 1.4rem 1.6rem;
+      margin-bottom: 1rem;
+      box-shadow: var(--shadow);
+      border-left: 3px solid var(--accent);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-1px);
+    }
+
+    .card:last-child {
+      margin-bottom: 0;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 0.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-primary);
+    }
+
+    .card-subtitle {
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      margin-top: 0.15rem;
+    }
+
+    .card-date {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .card ul {
+      margin-top: 0.6rem;
+      padding-left: 1.2rem;
+    }
+
+    .card ul li {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.3rem;
+      line-height: 1.6;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 0.18rem 0.65rem;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 12px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+      margin-right: 0.3rem;
+    }
+
+    .interest-tag {
+      background: #e8f0fe;
+      color: #1a56db;
+    }
+
+    /* ── EDUCATION ── */
+    .edu-gpa {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--pku-red), #c0392b);
+      color: #fff;
+      padding: 0.18rem 0.7rem;
+      border-radius: 12px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-left: 0.5rem;
+    }
+
+    /* ── AWARDS ── */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.7rem;
+    }
+
+    .award-item {
+      background: var(--card-bg);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      box-shadow: var(--shadow);
+      font-size: 0.88rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      transition: box-shadow 0.2s;
+    }
+
+    .award-item:hover {
+      box-shadow: var(--shadow-hover);
+    }
+
+    .award-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 0.45rem;
+    }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .skill-card {
+      background: var(--card-bg);
+      border-radius: 10px;
+      padding: 1.2rem 1.4rem;
+      box-shadow: var(--shadow);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+
+    .skill-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-2px);
+    }
+
+    .skill-card-title {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: var(--pku-red);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .skill-card p {
+      font-size: 0.87rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* ── STUDENT WORK ── */
+    .work-list {
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .work-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.85rem 1.4rem;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+      transition: background 0.15s;
+    }
+
+    .work-item:last-child {
+      border-bottom: none;
+    }
+
+    .work-item:hover {
+      background: #fafafa;
+    }
+
+    .work-title {
+      font-size: 0.9rem;
+      color: var(--text-primary);
+    }
+
+    .work-date {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* ── BLOG SECTION CARD ── */
+    .blog-card {
+      background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
+      border-radius: 12px;
+      padding: 2rem 2.4rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      margin-bottom: 2.8rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .blog-card-text h3 {
+      font-family: 'Noto Serif SC', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+
+    .blog-card-text p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.65);
+    }
+
+    .btn-blog-card {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.65rem 1.8rem;
+      background: linear-gradient(135deg, #8C1515, #c0392b);
+      color: #fff;
+      border-radius: 24px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 16px rgba(140,21,21,0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-blog-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 22px rgba(140,21,21,0.5);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .hero-inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-contacts {
+        justify-content: center;
+      }
+
+      .awards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav .nav-links {
+        display: none;
+      }
+
+      .card-header {
+        flex-direction: column;
+      }
+
+      .blog-card {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ── -->
+<nav>
+  <span class="nav-name">洪巍骏</span>
+  <ul class="nav-links">
+    <li><a href="#education">教育经历</a></li>
+    <li><a href="#projects">项目</a></li>
+    <li><a href="#teaching">课程教学</a></li>
+    <li><a href="#awards">所获荣誉</a></li>
+    <li><a href="#skills">技能</a></li>
+    <li>
+      <a href="https://blog.hongwj.com" target="_blank" rel="noopener" class="btn-blog">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        博客
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<header class="hero">
+  <div class="hero-inner">
+    <img src="photo.jpg" class="hero-photo" alt="洪巍骏" />
+    <div class="hero-content">
+      <h1 class="hero-title">洪巍骏</h1>
+      <p class="hero-subtitle">博士研究生 · 北京大学计算机学院</p>
+      <div class="hero-contacts">
+        <span class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          北京市海淀区颐和园路 5 号，北京大学，100871
+        </span>
+        <span class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:hong_wj@stu.pku.edu.cn">hong_wj@stu.pku.edu.cn</a>
+          &nbsp;·&nbsp;
+          <a href="mailto:hongwj@hongwj.com">hongwj@hongwj.com</a>
+        </span>
+        <span class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.15 3.38a2 2 0 0 1 1.72-2.12l3-.27a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 8a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          +86 138-8199-7546
+        </span>
+        <span class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <a href="https://www.hongwj.com" target="_blank" rel="noopener">www.hongwj.com</a>
+        </span>
+        <span class="contact-item">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <a href="https://github.com/Hong--WJ" target="_blank" rel="noopener">Hong__WJ</a>
+        </span>
+      </div>
+      <a href="https://blog.hongwj.com" target="_blank" rel="noopener" class="hero-blog-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        访问博客 blog.hongwj.com
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- ── MAIN ── -->
+<main>
+
+  <!-- BLOG CARD -->
+  <div class="blog-card fade-in">
+    <div class="blog-card-text">
+      <h3>个人博客</h3>
+      <p>记录研究思考、技术探索与学习笔记</p>
+    </div>
+    <a href="https://blog.hongwj.com" target="_blank" rel="noopener" class="btn-blog-card">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+      前往 blog.hongwj.com
+    </a>
+  </div>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section fade-in">
+    <div class="section-header">
+      <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+      <h2 class="section-title">教育经历</h2>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div>
+          <div class="card-title">
+            武汉大学
+            <span class="edu-gpa">GPA 3.96 / 4.0</span>
+          </div>
+          <div class="card-subtitle">本科，计算机科学与技术 · 计算机学院 · 排名：4 / 121</div>
+        </div>
+        <span class="card-date">2020.09 – 2024.06</span>
+      </div>
+      <ul>
+        <li><strong>主要课程：</strong>高等数学 A1(91)、高等数学 A2(91)、线性代数 A(90)、概率论与数理统计(96)、数据结构(91)、算法设计与分析(95)、计算机网络(97)、机器学习与模式识别(90)、软件工程(94)、量子计算(92)、编译原理(98) 等</li>
+      </ul>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div>
+          <div class="card-title">北京大学</div>
+          <div class="card-subtitle">
+            博士研究生，计算机科学与技术 · 计算机学院 · 导师：曹永知教授
+          </div>
+        </div>
+        <span class="card-date">2024.09 – 至今（预计 2029.07）</span>
+      </div>
+      <div style="margin-top:0.6rem">
+        <span class="tag interest-tag">大语言模型安全与隐私</span>
+        <span class="tag interest-tag">人工智能鲁棒性与不确定度</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section fade-in">
+    <div class="section-header">
+      <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      <h2 class="section-title">项目</h2>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div class="card-title">基于统计的类型推理方法研究</div>
+        <span class="card-date">2021.06 – 2022.12</span>
+      </div>
+      <ul>
+        <li>国家自然科学基金面上项目（No.61872272）</li>
+        <li>对于无法通过编译器编译的代码片段，利用机器学习方法对其进行类型推理，主要负责从序列恢复出类型的部分。</li>
+      </ul>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div class="card-title">模糊程序语法分析方法研究</div>
+        <span class="card-date">2023.01 – 2024.05</span>
+      </div>
+      <ul>
+        <li>在袁梦霆教授指导下独立完成工作。</li>
+        <li>对于可能包含语法错误的程序代码，利用机器学习的方法，对其中可能含有错误的代码进行容错语法分析并恢复为正确的语法树。</li>
+      </ul>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div class="card-title">面向课程评估、推荐与讨论的 AI 增强平台</div>
+        <span class="card-date">2023.09 – 2023.11</span>
+      </div>
+      <ul>
+        <li>项目经理</li>
+        <li>为武汉大学软件工程课程开发了一个 AI 增强的课程评估、推荐与讨论平台，集成了基于大语言模型的对话接口，以支持自然语言课程查询。</li>
+      </ul>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div class="card-title">通过形式化全验证的 OpenHarmony LiteOS-M</div>
+        <span class="card-date">2024.06 – 2025.12</span>
+      </div>
+      <ul>
+        <li>中关村国家实验室项目</li>
+        <li>负责工具连接相关工作，实现验证工具 VST 和 OSVAuto 的连接，完成流程集成并支撑工具连接稳定运行，提升自动验证效率。</li>
+      </ul>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div class="card-title">人工智能数据模型误差来源分析及量化研究</div>
+        <span class="card-date">2025.12 – 至今</span>
+      </div>
+      <ul>
+        <li>项目学生负责人</li>
+        <li>从人工智能测试评估角度出发，基于人工智能模型鲁棒性和不确定度方法，系统性研究人工智能模型误差来源，为可靠、可信的人工智能模型提供理论支撑和实践依据。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- TEACHING -->
+  <section id="teaching" class="section fade-in">
+    <div class="section-header">
+      <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      <h2 class="section-title">课程教学</h2>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div>
+          <div class="card-title">编译原理，助教</div>
+          <div class="card-subtitle">武汉大学</div>
+        </div>
+        <span class="card-date">2024 年春季学期</span>
+      </div>
+      <ul>
+        <li>讲授关于 CMake 使用和 LLVM Kaleidoscope 项目的实验课。</li>
+        <li>设计并实现核心实验。</li>
+        <li>部署基于 Docker 的自动化代码评估平台。</li>
+        <li>监考并批改期末考试。</li>
+      </ul>
+    </div>
+
+    <div class="card fade-in">
+      <div class="card-header">
+        <div>
+          <div class="card-title">数理逻辑，助教</div>
+          <div class="card-subtitle">北京大学</div>
+        </div>
+        <span class="card-date">2024 年秋季学期</span>
+      </div>
+      <ul>
+        <li>批改并反馈每周作业。</li>
+        <li>监考并批改期末考试。</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- AWARDS -->
+  <section id="awards" class="section fade-in">
+    <div class="section-header">
+      <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+      <h2 class="section-title">所获荣誉</h2>
+    </div>
+    <div class="awards-grid">
+      <div class="award-item fade-in"><div class="award-dot"></div>全国青少年信息学奥林匹克联赛（NOIP）一等奖</div>
+      <div class="award-item fade-in"><div class="award-dot"></div>全国大学生程序设计大赛（CCPC）湖北赛区金奖</div>
+      <div class="award-item fade-in"><div class="award-dot"></div>蓝桥杯全国总决赛 C/C++ 程序设计大学 A 组二等奖</div>
+      <div class="award-item fade-in"><div class="award-dot"></div>全国高校计算机大赛软件设计天梯赛个人三等奖</div>
+      <div class="award-item fade-in"><div class="award-dot"></div>CCF 大学生计算机系统与程序设计竞赛全国铜奖</div>
+      <div class="award-item fade-in"><div class="award-dot"></div>中国大学生计算机设计大赛三等奖</div>
+      <div class="award-item fade-in"><div class="award-dot"></div>武汉大学优秀学生甲等奖学金</div>
+      <div class="award-item fade-in"><div class="award-dot"></div>武汉大学雷军计算机奖学金</div>
+      <div class="award-item fade-in"><div class="award-dot"></div>武汉大学永旺奖学金</div>
+      <div class="award-item fade-in"><div class="award-dot"></div>武汉大学三好学生</div>
+      <div class="award-item fade-in"><div class="award-dot"></div>武汉大学优秀学生干部</div>
+      <div class="award-item fade-in"><div class="award-dot"></div>武汉大学优秀本科毕业生</div>
+      <div class="award-item fade-in"><div class="award-dot"></div>武汉大学计算机学院优秀共产党员</div>
+    </div>
+  </section>
+
+  <!-- STUDENT WORK -->
+  <section id="student-work" class="section fade-in">
+    <div class="section-header">
+      <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+      <h2 class="section-title">学生工作</h2>
+    </div>
+    <div class="work-list fade-in">
+      <div class="work-item">
+        <span class="work-title">武汉大学英语辩论队队员</span>
+        <span class="work-date">2020.09 – 2021.06</span>
+      </div>
+      <div class="work-item">
+        <span class="work-title">武汉大学广播台技术部部长</span>
+        <span class="work-date">2021.07 – 2022.06</span>
+      </div>
+      <div class="work-item">
+        <span class="work-title">武汉大学广播台学生副台长（分管节目剪辑、设备运行与维护）</span>
+        <span class="work-date">2022.07 – 2023.06</span>
+      </div>
+      <div class="work-item">
+        <span class="work-title">北京大学计算机学院 2024 级软件所团支部组织委员</span>
+        <span class="work-date">2024.09 – 2025.06</span>
+      </div>
+      <div class="work-item">
+        <span class="work-title">北京大学计算机学院编程语言与理论博士生团支部书记</span>
+        <span class="work-date">2025.06 – 至今</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section fade-in">
+    <div class="section-header">
+      <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      <h2 class="section-title">技能</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          数学
+        </div>
+        <p>所有数学课程均为满绩（4.0），高等数学 A1(91)、高等数学 A2(91)、线性代数(90)、概率论与数理统计(96)。</p>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          编程
+        </div>
+        <p>熟悉 C++、Python、MATLAB 编程语言，了解 PyTorch 深度学习框架，获全国大学生程序设计大赛湖北赛区金奖等奖项。</p>
+      </div>
+      <div class="skill-card fade-in">
+        <div class="skill-card-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+          英语
+        </div>
+        <p>六级 581 分；曾担任武汉大学英语辩论队队员。</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>洪巍骏 · 北京大学计算机学院 · <a href="mailto:hongwj@hongwj.com" style="color:var(--text-muted)">hongwj@hongwj.com</a></p>
+</footer>
+
+<script>
+  // Intersection Observer for fade-in animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
