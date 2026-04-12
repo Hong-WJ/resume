@@ -87,6 +87,11 @@
       color: var(--pku-red);
       letter-spacing: 0.05em;
     }
+    .nav-home-link {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+    }
 
     .nav-links {
       display: flex;
@@ -689,11 +694,13 @@
 
 <!-- ── NAVIGATION ── -->
 <nav>
-  <div class="nav-brand">
-    <img src="LOGO.PNG" class="nav-logo" alt="Logo" />
-    <div class="nav-divider"></div>
-    <span class="nav-name">洪巍骏</span>
-  </div>
+  <a href="https://www.hongwj.com" class="nav-home-link">
+    <div class="nav-brand">
+      <img src="LOGO.PNG" class="nav-logo" alt="Logo" />
+      <div class="nav-divider"></div>
+      <span class="nav-name">洪巍骏</span>
+    </div>
+  </a>
   <ul class="nav-links">
     <li><a href="#education">教育经历</a></li>
     <li><a href="#projects">项目</a></li>
