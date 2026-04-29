@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>洪巍骏</title>
+  <title>洪巍骏 | Weijun Hong</title>
   <link rel="icon" type="image/png" href="favicon.PNG" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -40,10 +40,13 @@
       color: var(--text-primary);
       line-height: 1.7;
       font-size: 15px;
-      /* subtle dot-grid background */
       background-image: radial-gradient(circle, #d1d5db 1px, transparent 1px);
       background-size: 28px 28px;
     }
+
+    /* ── LANGUAGE SWITCHING ── */
+    .lang-en .zh-only { display: none !important; }
+    html:not(.lang-en) .en-only { display: none !important; }
 
     /* ── TOP NAV ── */
     nav {
@@ -87,10 +90,17 @@
       color: var(--pku-red);
       letter-spacing: 0.05em;
     }
+
     .nav-home-link {
       text-decoration: none;
       color: inherit;
       display: inline-block;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
     }
 
     .nav-links {
@@ -145,6 +155,50 @@
       box-shadow: 0 4px 14px rgba(140,21,21,0.38) !important;
     }
 
+    .lang-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: 0.86rem;
+      font-weight: 500;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: color 0.2s;
+      white-space: nowrap;
+      flex-shrink: 0;
+      position: relative;
+      font-family: inherit;
+    }
+
+    .lang-btn svg {
+      flex-shrink: 0;
+      stroke: currentColor;
+    }
+
+    .lang-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.2s;
+      border-radius: 2px;
+    }
+
+    .lang-btn:hover {
+      color: var(--accent);
+    }
+
+    .lang-btn:hover::after {
+      transform: scaleX(1);
+    }
+
     /* ── HERO ── */
     .hero {
       background: linear-gradient(135deg, #0d1b2a 0%, #1a1a2e 40%, #16213e 70%, #0f3460 100%);
@@ -154,7 +208,6 @@
       overflow: hidden;
     }
 
-    /* decorative rings */
     .hero::before {
       content: '';
       position: absolute;
@@ -658,7 +711,7 @@
       .skills-grid { grid-template-columns: 1fr; }
 
       nav { padding: 0 1rem; }
-      nav .nav-links li:not(:last-child) { display: none; }
+      nav .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
 
       main { padding: 0 1rem; }
 
@@ -676,6 +729,10 @@
     @media (max-width: 900px) {
       .skills-grid { grid-template-columns: 1fr 1fr; }
     }
+
+    /* ── LANGUAGE TRANSITION ── */
+    body { transition: opacity 0.12s ease; }
+    body.lang-switching { opacity: 0.6; }
 
     /* ── ANIMATIONS ── */
     .fade-in {
@@ -698,38 +755,56 @@
     <div class="nav-brand">
       <img src="LOGO.PNG" class="nav-logo" alt="Logo" />
       <div class="nav-divider"></div>
-      <span class="nav-name">洪巍骏</span>
+      <span class="nav-name">
+        <span class="zh-only">洪巍骏</span>
+        <span class="en-only">Weijun Hong</span>
+      </span>
     </div>
   </a>
-  <ul class="nav-links">
-    <li><a href="#education">教育经历</a></li>
-    <li><a href="#projects">项目</a></li>
-    <li><a href="#teaching">课程教学</a></li>
-    <li><a href="#awards">所获荣誉</a></li>
-    <li><a href="#skills">技能</a></li>
-    <li>
-      <a href="https://blog.hongwj.com" target="_blank" rel="noopener" class="btn-blog">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-        博客
-      </a>
-    </li>
-  </ul>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#education"><span class="zh-only">教育经历</span><span class="en-only">Education</span></a></li>
+      <li><a href="#projects"><span class="zh-only">项目</span><span class="en-only">Projects</span></a></li>
+      <li><a href="#teaching"><span class="zh-only">课程教学</span><span class="en-only">Teaching</span></a></li>
+      <li><a href="#awards"><span class="zh-only">所获荣誉</span><span class="en-only">Honors</span></a></li>
+      <li><a href="#skills"><span class="zh-only">技能</span><span class="en-only">Skills</span></a></li>
+      <li>
+        <button class="lang-btn" onclick="toggleLang()" aria-label="Switch language">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span class="zh-only">EN</span><span class="en-only">中</span>
+        </button>
+      </li>
+      <li>
+        <a href="https://blog.hongwj.com" target="_blank" rel="noopener" class="btn-blog">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          <span class="zh-only">博客</span><span class="en-only">Blog</span>
+        </a>
+      </li>
+    </ul>
+  </div>
 </nav>
 
 <!-- ── HERO ── -->
 <header class="hero">
   <div class="hero-ring2"></div>
   <div class="hero-inner">
-    <img src="photo.jpg" class="hero-photo" alt="洪巍骏"
+    <img src="photo.jpg" class="hero-photo" alt="洪巍骏 Weijun Hong"
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
-    <div class="hero-photo-placeholder" style="display:none">照片</div>
+    <div class="hero-photo-placeholder" style="display:none"><span class="zh-only">照片</span><span class="en-only">Photo</span></div>
     <div class="hero-content">
-      <h1 class="hero-title">洪巍骏</h1>
-      <p class="hero-subtitle">博士研究生 · 北京大学计算机学院</p>
+      <h1 class="hero-title">
+        <span class="zh-only">洪巍骏</span>
+        <span class="en-only" style="font-family:'Inter',sans-serif;letter-spacing:0.02em">Weijun Hong</span>
+      </h1>
+      <p class="hero-subtitle">
+        <span class="zh-only">博士研究生 · 北京大学计算机学院</span>
+        <span class="en-only">Ph.D. Student · School of Computer Science, Peking University</span>
+      </p>
       <div class="hero-contacts">
         <span class="contact-item">
           <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          北京市海淀区颐和园路 5 号，北京大学，100871
+          <span class="zh-only">北京市海淀区颐和园路 5 号，北京大学，100871</span>
+          <span class="en-only">Peking University, No.5 Yiheyuan Road, Haidian District, Beijing, China, 100871</span>
         </span>
         <span class="contact-item">
           <svg class="contact-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -766,37 +841,54 @@
   <section id="education" class="section fade-in">
     <div class="section-header">
       <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
-      <h2 class="section-title">教育经历</h2>
+      <h2 class="section-title"><span class="zh-only">教育经历</span><span class="en-only">Education</span></h2>
     </div>
 
     <div class="card green fade-in">
       <div class="card-header">
         <div>
           <div class="card-title">
-            武汉大学
+            <span class="zh-only">武汉大学</span>
+            <span class="en-only">Wuhan University</span>
             <span class="edu-gpa">GPA 3.96 / 4.0</span>
-            <span class="edu-rank">排名 4 / 121</span>
+            <span class="edu-rank"><span class="zh-only">排名</span><span class="en-only">Rank</span> 4 / 121</span>
           </div>
-          <div class="card-subtitle">本科 · 计算机科学与技术 · 计算机学院</div>
+          <div class="card-subtitle">
+            <span class="zh-only">本科 · 计算机科学与技术 · 计算机学院</span>
+            <span class="en-only">BS in Computer Science · School of Computer Science</span>
+          </div>
         </div>
-        <span class="card-date">2020.09 – 2024.06</span>
+        <span class="card-date">
+          <span class="zh-only">2020.09 – 2024.06</span>
+          <span class="en-only">Sep 2020 – Jun 2024</span>
+        </span>
       </div>
       <ul>
-        <li><strong>主要课程：</strong>高等数学 A1(91)、高等数学 A2(91)、线性代数 A(90)、概率论与数理统计(96)、数据结构(91)、算法设计与分析(95)、计算机网络(97)、机器学习与模式识别(90)、软件工程(94)、量子计算(92)、编译原理(98) 等</li>
+        <li class="zh-only"><strong>主要课程：</strong>高等数学 A1(91)、高等数学 A2(91)、线性代数 A(90)、概率论与数理统计(96)、数据结构(91)、算法设计与分析(95)、计算机网络(97)、机器学习与模式识别(90)、软件工程(94)、量子计算(92)、编译原理(98) 等</li>
+        <li class="en-only"><strong>Coursework:</strong> Advanced Mathematics A1(91), A2(91), Linear Algebra A(90), Probability Theory and Statistics(96), Data Structure(91), Algorithms(95), Computer Networks(97), Machine Learning and Pattern Recognition(90), Software Engineering(94), Quantum Computing(92), Principles of Compilers(98), et al.</li>
       </ul>
     </div>
 
     <div class="card fade-in">
       <div class="card-header">
         <div>
-          <div class="card-title">北京大学</div>
-          <div class="card-subtitle">博士研究生 · 计算机科学与技术 · 计算机学院 · 导师：曹永知教授</div>
+          <div class="card-title">
+            <span class="zh-only">北京大学</span>
+            <span class="en-only">Peking University</span>
+          </div>
+          <div class="card-subtitle">
+            <span class="zh-only">博士研究生 · 计算机科学与技术 · 计算机学院 · 导师：曹永知教授</span>
+            <span class="en-only">Ph.D. in Computer Science · School of Computer Science · Supervised by Prof. Yongzhi Cao</span>
+          </div>
         </div>
-        <span class="card-date">2024.09 – 至今（预计 2029.07）</span>
+        <span class="card-date">
+          <span class="zh-only">2024.09 – 至今（预计 2029.07）</span>
+          <span class="en-only">Sep 2024 – Present (Expected Jul 2029)</span>
+        </span>
       </div>
       <div style="margin-top:0.6rem">
-        <span class="tag tag-red">大语言模型安全与隐私</span>
-        <span class="tag tag-red">人工智能鲁棒性与不确定度</span>
+        <span class="tag tag-red"><span class="zh-only">大语言模型安全与隐私</span><span class="en-only">LLM Security &amp; Privacy</span></span>
+        <span class="tag tag-red"><span class="zh-only">人工智能鲁棒性与不确定度</span><span class="en-only">AI Robustness &amp; Uncertainty</span></span>
       </div>
     </div>
   </section>
@@ -805,83 +897,120 @@
   <section id="projects" class="section fade-in">
     <div class="section-header">
       <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      <h2 class="section-title">项目</h2>
+      <h2 class="section-title"><span class="zh-only">项目</span><span class="en-only">Projects</span></h2>
     </div>
 
     <div class="card green fade-in">
       <div class="card-header">
         <div>
-          <div class="card-title">基于统计的类型推理方法研究</div>
+          <div class="card-title">
+            <span class="zh-only">基于统计的类型推理方法研究</span>
+            <span class="en-only">Research on Statistical Approaches to Type Inference</span>
+          </div>
           <div style="margin-top:0.3rem">
-            <span class="project-badge badge-nsfc">国家自然科学基金</span>
+            <span class="project-badge badge-nsfc"><span class="zh-only">国家自然科学基金</span><span class="en-only">NSFC</span></span>
           </div>
         </div>
-        <span class="card-date">2021.06 – 2022.12</span>
+        <span class="card-date">
+          <span class="zh-only">2021.06 – 2022.12</span>
+          <span class="en-only">Jun 2021 – Dec 2022</span>
+        </span>
       </div>
       <ul>
-        <li>国家自然科学基金面上项目（No.61872272）</li>
-        <li>对于无法通过编译的代码片段，利用机器学习方法对其进行类型推理，主要负责从序列恢复出类型的部分。</li>
+        <li class="zh-only">国家自然科学基金面上项目（No.61872272）</li>
+        <li class="en-only">Supported by the Natural Science Foundation of China (No.61872272)</li>
+        <li class="zh-only">对于无法通过编译的代码片段，利用机器学习方法对其进行类型推理，主要负责从序列恢复出类型的部分。</li>
+        <li class="en-only">Developed machine learning models for type inference on non-compilable code snippets, with a primary focus on recovering variable types from code sequences.</li>
       </ul>
     </div>
 
     <div class="card green fade-in">
       <div class="card-header">
         <div>
-          <div class="card-title">模糊程序语法分析方法研究</div>
+          <div class="card-title">
+            <span class="zh-only">模糊程序语法分析方法研究</span>
+            <span class="en-only">Research on the Syntax Analysis Method of Fuzzy Program</span>
+          </div>
           <div style="margin-top:0.3rem">
-            <span class="project-badge badge-solo">独立研究</span>
+            <span class="project-badge badge-solo"><span class="zh-only">独立研究</span><span class="en-only">Independent Research</span></span>
           </div>
         </div>
-        <span class="card-date">2023.01 – 2024.05</span>
+        <span class="card-date">
+          <span class="zh-only">2023.01 – 2024.05</span>
+          <span class="en-only">Jan 2023 – May 2024</span>
+        </span>
       </div>
       <ul>
-        <li>在袁梦霆教授指导下独立完成工作。</li>
-        <li>对于可能包含语法错误的程序代码，利用机器学习的方法，对其中可能含有错误的代码进行容错语法分析并恢复为正确的语法树。</li>
+        <li class="zh-only">在袁梦霆教授指导下独立完成工作。</li>
+        <li class="en-only">Led the project under the supervision of Prof. Mengting Yuan.</li>
+        <li class="zh-only">对于可能包含语法错误的程序代码，利用机器学习的方法，对其中可能含有错误的代码进行容错语法分析并恢复为正确的语法树。</li>
+        <li class="en-only">Designed and implemented a machine learning approach for fault-tolerant syntax analysis and abstract syntax tree reconstruction from potentially erroneous program code.</li>
       </ul>
     </div>
 
     <div class="card blue fade-in">
       <div class="card-header">
         <div>
-          <div class="card-title">面向课程评估、推荐与讨论的 AI 增强平台</div>
+          <div class="card-title">
+            <span class="zh-only">面向课程评估、推荐与讨论的 AI 增强平台</span>
+            <span class="en-only">An AI-Enhanced Platform for Course Evaluation and Discussion</span>
+          </div>
           <div style="margin-top:0.3rem">
-            <span class="project-badge badge-pm">项目经理</span>
+            <span class="project-badge badge-pm"><span class="zh-only">项目经理</span><span class="en-only">Product Manager</span></span>
           </div>
         </div>
-        <span class="card-date">2023.09 – 2023.11</span>
+        <span class="card-date">
+          <span class="zh-only">2023.09 – 2023.11</span>
+          <span class="en-only">Sep 2023 – Nov 2023</span>
+        </span>
       </div>
       <ul>
-        <li>为武汉大学软件工程课程开发了一个 AI 增强的课程评估、推荐与讨论平台，集成了基于大语言模型的对话接口，以支持自然语言课程查询。</li>
+        <li class="zh-only">为武汉大学软件工程课程开发了一个 AI 增强的课程评估、推荐与讨论平台，集成了基于大语言模型的对话接口，以支持自然语言课程查询。</li>
+        <li class="en-only">Developed an AI-enhanced course evaluation and discussion forum for Wuhan University's Software Engineering course, featuring a GPT-based conversational interface for natural language course queries.</li>
       </ul>
     </div>
 
     <div class="card gold fade-in">
       <div class="card-header">
         <div>
-          <div class="card-title">通过形式化全验证的 OpenHarmony LiteOS-M</div>
+          <div class="card-title">
+            <span class="zh-only">通过形式化全验证的 OpenHarmony LiteOS-M</span>
+            <span class="en-only">Fully Formally Verified OpenHarmony LiteOS-M</span>
+          </div>
           <div style="margin-top:0.3rem">
-            <span class="project-badge badge-lab">中关村国家实验室</span>
+            <span class="project-badge badge-lab"><span class="zh-only">中关村国家实验室</span><span class="en-only">ZGC Lab</span></span>
           </div>
         </div>
-        <span class="card-date">2024.06 – 2025.12</span>
+        <span class="card-date">
+          <span class="zh-only">2024.06 – 2025.12</span>
+          <span class="en-only">Jun 2024 – Dec 2025</span>
+        </span>
       </div>
       <ul>
-        <li>负责工具连接相关工作，实现验证工具 VST 和 OSVAuto 的连接，完成流程集成并支撑工具连接稳定运行，提升自动验证效率。</li>
+        <li class="zh-only">负责工具连接相关工作，实现验证工具 VST 和 OSVAuto 的连接，完成流程集成并支撑工具连接稳定运行，提升自动验证效率。</li>
+        <li class="en-only">Integrated VST and OSVAuto verification tools, completed workflow integration, and supported stable toolchain operation to improve automated verification efficiency.</li>
       </ul>
     </div>
 
     <div class="card fade-in">
       <div class="card-header">
         <div>
-          <div class="card-title">人工智能数据模型误差来源分析及量化研究</div>
+          <div class="card-title">
+            <span class="zh-only">人工智能数据模型误差来源分析及量化研究</span>
+            <span class="en-only">Analysis and Quantification of Error Sources in AI Data Models</span>
+          </div>
           <div style="margin-top:0.3rem">
-            <span class="project-badge badge-lead">学生负责人</span>
+            <span class="project-badge badge-lead"><span class="zh-only">学生负责人</span><span class="en-only">Product Manager</span></span>
           </div>
         </div>
-        <span class="card-date">2025.12 – 至今</span>
+        <span class="card-date">
+          <span class="zh-only">2025.12 – 至今</span>
+          <span class="en-only">Dec 2025 – Present</span>
+        </span>
       </div>
       <ul>
-        <li>从人工智能测试评估角度出发，基于人工智能模型鲁棒性和不确定度方法，系统性研究人工智能模型误差来源，为可靠、可信的人工智能模型提供理论支撑和实践依据。</li>
+        <li class="zh-only">从人工智能测试评估角度出发，基于人工智能模型鲁棒性和不确定度方法，系统性研究人工智能模型误差来源，为可靠、可信的人工智能模型提供理论支撑和实践依据。</li>
+        <li class="en-only">Investigated AI model error sources from a testing and evaluation perspective using robustness and uncertainty quantification methods, supporting reliable and trustworthy AI development.</li>
       </ul>
     </div>
   </section>
@@ -890,36 +1019,60 @@
   <section id="teaching" class="section fade-in">
     <div class="section-header">
       <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      <h2 class="section-title">课程教学</h2>
+      <h2 class="section-title"><span class="zh-only">课程教学</span><span class="en-only">Teaching Experience</span></h2>
     </div>
 
     <div class="card green fade-in">
       <div class="card-header">
         <div>
-          <div class="card-title">编译原理，助教</div>
-          <div class="card-subtitle">武汉大学</div>
+          <div class="card-title">
+            <span class="zh-only">编译原理，助教</span>
+            <span class="en-only">Principles of Compilers, Teaching Assistant</span>
+          </div>
+          <div class="card-subtitle">
+            <span class="zh-only">武汉大学</span>
+            <span class="en-only">Wuhan University</span>
+          </div>
         </div>
-        <span class="card-date">2024 年春季学期</span>
+        <span class="card-date">
+          <span class="zh-only">2024 年春季学期</span>
+          <span class="en-only">Spring 2024</span>
+        </span>
       </div>
       <ul>
-        <li>讲授关于 CMake 使用和 LLVM Kaleidoscope 项目的实验课。</li>
-        <li>设计并实现核心实验。</li>
-        <li>部署基于 Docker 的自动化代码评估平台。</li>
-        <li>监考并批改期末考试。</li>
+        <li class="zh-only">讲授关于 CMake 使用和 LLVM Kaleidoscope 项目的实验课。</li>
+        <li class="en-only">Delivered lab tutorials on CMake usage and LLVM Kaleidoscope project.</li>
+        <li class="zh-only">设计并实现核心实验。</li>
+        <li class="en-only">Designed and implemented core experiments.</li>
+        <li class="zh-only">部署基于 Docker 的自动化代码评估平台。</li>
+        <li class="en-only">Deployed Docker-based automatic code evaluation platform.</li>
+        <li class="zh-only">监考并批改期末考试。</li>
+        <li class="en-only">Proctored and graded final examinations.</li>
       </ul>
     </div>
 
     <div class="card fade-in">
       <div class="card-header">
         <div>
-          <div class="card-title">数理逻辑，助教</div>
-          <div class="card-subtitle">北京大学</div>
+          <div class="card-title">
+            <span class="zh-only">数理逻辑，助教</span>
+            <span class="en-only">Mathematical Logic, Teaching Assistant</span>
+          </div>
+          <div class="card-subtitle">
+            <span class="zh-only">北京大学</span>
+            <span class="en-only">Peking University</span>
+          </div>
         </div>
-        <span class="card-date">2024 年秋季学期</span>
+        <span class="card-date">
+          <span class="zh-only">2024 年秋季学期</span>
+          <span class="en-only">Fall 2024</span>
+        </span>
       </div>
       <ul>
-        <li>批改并反馈每周作业。</li>
-        <li>监考并批改期末考试。</li>
+        <li class="zh-only">批改并反馈每周作业。</li>
+        <li class="en-only">Graded regular assignments and provided feedback to students.</li>
+        <li class="zh-only">监考并批改期末考试。</li>
+        <li class="en-only">Proctored and graded final examinations.</li>
       </ul>
     </div>
   </section>
@@ -928,47 +1081,73 @@
   <section id="awards" class="section fade-in">
     <div class="section-header">
       <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
-      <h2 class="section-title">所获荣誉</h2>
+      <h2 class="section-title"><span class="zh-only">所获荣誉</span><span class="en-only">Honors and Awards</span></h2>
     </div>
     <div class="awards-grid">
       <div class="award-item comp fade-in">
-        <span class="award-icon">🥇</span>全国青少年信息学奥林匹克联赛（NOIP）一等奖
+        <span class="award-icon">🥇</span>
+        <span class="zh-only">全国青少年信息学奥林匹克联赛（NOIP）一等奖</span>
+        <span class="en-only">First Prize, National Olympiad in Informatics in Provinces (NOIP)</span>
       </div>
       <div class="award-item comp fade-in">
-        <span class="award-icon">🥇</span>全国大学生程序设计大赛（CCPC）湖北赛区金奖
+        <span class="award-icon">🥇</span>
+        <span class="zh-only">全国大学生程序设计大赛（CCPC）湖北赛区金奖</span>
+        <span class="en-only">Gold Medal, China Collegiate Programming Contest – Hubei Provincial Contest</span>
       </div>
       <div class="award-item comp fade-in">
-        <span class="award-icon">🥈</span>蓝桥杯全国总决赛 C/C++ 程序设计大学 A 组二等奖
+        <span class="award-icon">🥈</span>
+        <span class="zh-only">蓝桥杯全国总决赛 C/C++ 程序设计大学 A 组二等奖</span>
+        <span class="en-only">Second Prize, National Finals, Lanqiao Cup (C/C++, Group A)</span>
       </div>
       <div class="award-item comp fade-in">
-        <span class="award-icon">🥈</span>全国高校计算机大赛软件设计天梯赛个人二等奖
+        <span class="award-icon">🥈</span>
+        <span class="zh-only">全国高校计算机大赛软件设计天梯赛个人二等奖</span>
+        <span class="en-only">Second Prize (Individual), Group Programming Ladder Tournament, National College Computer Competition</span>
       </div>
       <div class="award-item comp fade-in">
-        <span class="award-icon">🥉</span>CCF 大学生计算机系统与程序设计竞赛全国铜奖
+        <span class="award-icon">🥉</span>
+        <span class="zh-only">CCF 大学生计算机系统与程序设计竞赛全国铜奖</span>
+        <span class="en-only">Bronze Award (National), CCF Collegiate Computer Systems &amp; Programming Contest</span>
       </div>
       <div class="award-item comp fade-in">
-        <span class="award-icon">🥉</span>中国大学生计算机设计大赛三等奖
+        <span class="award-icon">🥉</span>
+        <span class="zh-only">中国大学生计算机设计大赛三等奖</span>
+        <span class="en-only">Third Prize, National College Computer Design Contest</span>
       </div>
       <div class="award-item scholar fade-in">
-        <span class="award-icon">🎓</span>武汉大学优秀学生甲等奖学金
+        <span class="award-icon">🎓</span>
+        <span class="zh-only">武汉大学优秀学生甲等奖学金</span>
+        <span class="en-only">First-Class Scholarship for Outstanding Students, Wuhan University</span>
       </div>
       <div class="award-item scholar fade-in">
-        <span class="award-icon">🎓</span>武汉大学雷军计算机奖学金
+        <span class="award-icon">🎓</span>
+        <span class="zh-only">武汉大学雷军计算机奖学金</span>
+        <span class="en-only">Lei Jun Scholarship, Wuhan University</span>
       </div>
       <div class="award-item scholar fade-in">
-        <span class="award-icon">🎓</span>武汉大学永旺奖学金
+        <span class="award-icon">🎓</span>
+        <span class="zh-only">武汉大学永旺奖学金</span>
+        <span class="en-only">AEON Scholarship, Wuhan University</span>
       </div>
       <div class="award-item honor fade-in">
-        <span class="award-icon">⭐</span>武汉大学三好学生
+        <span class="award-icon">⭐</span>
+        <span class="zh-only">武汉大学三好学生</span>
+        <span class="en-only">Outstanding Student, Wuhan University</span>
       </div>
       <div class="award-item honor fade-in">
-        <span class="award-icon">⭐</span>武汉大学优秀学生干部
+        <span class="award-icon">⭐</span>
+        <span class="zh-only">武汉大学优秀学生干部</span>
+        <span class="en-only">Outstanding Student Leader, Wuhan University</span>
       </div>
       <div class="award-item honor fade-in">
-        <span class="award-icon">⭐</span>武汉大学优秀本科毕业生
+        <span class="award-icon">⭐</span>
+        <span class="zh-only">武汉大学优秀本科毕业生</span>
+        <span class="en-only">Excellent Graduate, Wuhan University</span>
       </div>
       <div class="award-item honor fade-in">
-        <span class="award-icon">⭐</span>武汉大学计算机学院优秀共产党员
+        <span class="award-icon">⭐</span>
+        <span class="zh-only">武汉大学计算机学院优秀共产党员</span>
+        <span class="en-only">Outstanding CPC Member, School of Computer Science, Wuhan University</span>
       </div>
     </div>
   </section>
@@ -977,28 +1156,58 @@
   <section id="student-work" class="section fade-in">
     <div class="section-header">
       <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-      <h2 class="section-title">学生工作</h2>
+      <h2 class="section-title"><span class="zh-only">学生工作</span><span class="en-only">Student Leadership</span></h2>
     </div>
     <div class="timeline fade-in">
       <div class="timeline-item">
-        <span class="timeline-title">武汉大学英语辩论队队员</span>
-        <span class="timeline-date">2020.09 – 2021.06</span>
+        <span class="timeline-title">
+          <span class="zh-only">武汉大学英语辩论队队员</span>
+          <span class="en-only">Member of Wuhan University English Debate Team</span>
+        </span>
+        <span class="timeline-date">
+          <span class="zh-only">2020.09 – 2021.06</span>
+          <span class="en-only">Sep 2020 – Jun 2021</span>
+        </span>
       </div>
       <div class="timeline-item">
-        <span class="timeline-title">武汉大学广播台技术部部长</span>
-        <span class="timeline-date">2021.07 – 2022.06</span>
+        <span class="timeline-title">
+          <span class="zh-only">武汉大学广播台技术部部长</span>
+          <span class="en-only">Head of Technical Department, Wuhan University Radio Station</span>
+        </span>
+        <span class="timeline-date">
+          <span class="zh-only">2021.07 – 2022.06</span>
+          <span class="en-only">Jul 2021 – Jun 2022</span>
+        </span>
       </div>
       <div class="timeline-item">
-        <span class="timeline-title">武汉大学广播台学生副台长（分管节目剪辑、设备运行与维护）</span>
-        <span class="timeline-date">2022.07 – 2023.06</span>
+        <span class="timeline-title">
+          <span class="zh-only">武汉大学广播台学生副台长（分管节目剪辑、设备运行与维护）</span>
+          <span class="en-only">Deputy Director of Wuhan University Radio Station</span>
+        </span>
+        <span class="timeline-date">
+          <span class="zh-only">2022.07 – 2023.06</span>
+          <span class="en-only">Jul 2022 – Jun 2023</span>
+        </span>
       </div>
       <div class="timeline-item">
-        <span class="timeline-title">北京大学计算机学院 2024 级软件所团支部组织委员</span>
-        <span class="timeline-date">2024.09 – 2025.06</span>
+        <span class="timeline-title">
+          <span class="zh-only">北京大学计算机学院 2024 级软件所团支部组织委员</span>
+          <span class="en-only">Organization Committee Member, 2024 Youth League Branch, Institute of Software, School of Computer Science, Peking University</span>
+        </span>
+        <span class="timeline-date">
+          <span class="zh-only">2024.09 – 2025.06</span>
+          <span class="en-only">Sep 2024 – Jun 2025</span>
+        </span>
       </div>
       <div class="timeline-item">
-        <span class="timeline-title">北京大学计算机学院编程语言与理论博士生团支部书记</span>
-        <span class="timeline-date">2025.06 – 至今</span>
+        <span class="timeline-title">
+          <span class="zh-only">北京大学计算机学院编程语言与理论博士生团支部书记</span>
+          <span class="en-only">Secretary, Programming Languages and Theory Ph.D. Youth League Branch, School of Computer Science, Peking University</span>
+        </span>
+        <span class="timeline-date">
+          <span class="zh-only">2025.06 – 至今</span>
+          <span class="en-only">Jun 2025 – Present</span>
+        </span>
       </div>
     </div>
   </section>
@@ -1007,29 +1216,32 @@
   <section id="skills" class="section fade-in">
     <div class="section-header">
       <svg class="section-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-      <h2 class="section-title">技能</h2>
+      <h2 class="section-title"><span class="zh-only">技能</span><span class="en-only">Skills</span></h2>
     </div>
     <div class="skills-grid">
       <div class="skill-card math fade-in">
         <div class="skill-card-title">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-          数学
+          <span class="zh-only">数学</span><span class="en-only">Mathematics</span>
         </div>
-        <p>所有数学课程均为满绩（4.0），高等数学 A1(91)、A2(91)、线性代数(90)、概率论与数理统计(96)。</p>
+        <p class="zh-only">所有数学课程均为满绩（4.0），高等数学 A1(91)、A2(91)、线性代数(90)、概率论与数理统计(96)。</p>
+        <p class="en-only">Achieved a perfect GPA (4.0/4.0) in all mathematics courses, including Advanced Mathematics, Linear Algebra, and Probability Theory and Mathematical Statistics.</p>
       </div>
       <div class="skill-card code fade-in">
         <div class="skill-card-title">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-          编程
+          <span class="zh-only">编程</span><span class="en-only">Programming</span>
         </div>
-        <p>熟悉 C++、Python、MATLAB，了解 PyTorch 深度学习框架，获全国大学生程序设计大赛湖北赛区金奖等奖项。</p>
+        <p class="zh-only">熟悉 C++、Python、MATLAB，了解 PyTorch 深度学习框架，获全国大学生程序设计大赛湖北赛区金奖等奖项。</p>
+        <p class="en-only">Proficient in C++, Python, and MATLAB; familiar with the PyTorch framework; recipient of the Gold Medal in China Collegiate Programming Contest – Hubei Provincial Contest.</p>
       </div>
       <div class="skill-card lang fade-in">
         <div class="skill-card-title">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-          英语
+          <span class="zh-only">英语</span><span class="en-only">English</span>
         </div>
-        <p>六级 581 分；曾担任武汉大学英语辩论队队员。</p>
+        <p class="zh-only">六级 581 分；曾担任武汉大学英语辩论队队员。</p>
+        <p class="en-only">CET-6: 581; former member of the Wuhan University English Debate Team.</p>
       </div>
     </div>
   </section>
@@ -1038,10 +1250,33 @@
 
 <!-- ── FOOTER ── -->
 <footer>
-  <p>洪巍骏 · 北京大学计算机学院 · <a href="mailto:hongwj@hongwj.com">hongwj@hongwj.com</a></p>
+  <p>
+    <span class="zh-only">洪巍骏 · 北京大学计算机学院 · <a href="mailto:hongwj@hongwj.com">hongwj@hongwj.com</a></span>
+    <span class="en-only">Weijun Hong · School of Computer Science, Peking University · <a href="mailto:hongwj@hongwj.com">hongwj@hongwj.com</a></span>
+  </p>
 </footer>
 
 <script>
+  function toggleLang() {
+    document.body.classList.add('lang-switching');
+    setTimeout(() => {
+      const html = document.documentElement;
+      const isEn = html.classList.toggle('lang-en');
+      html.lang = isEn ? 'en' : 'zh-CN';
+      try { localStorage.setItem('lang', isEn ? 'en' : 'zh'); } catch(e) {}
+      document.body.classList.remove('lang-switching');
+    }, 120);
+  }
+
+  (function() {
+    try {
+      if (localStorage.getItem('lang') === 'en') {
+        document.documentElement.classList.add('lang-en');
+        document.documentElement.lang = 'en';
+      }
+    } catch(e) {}
+  })();
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) entry.target.classList.add('visible');
